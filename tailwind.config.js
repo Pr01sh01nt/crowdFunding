@@ -12,7 +12,12 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      screens: {
+        'sm2': '400px', // Define custom breakpoint named lg2
+      },
     },
   },
   plugins: [],
 };
+
+
