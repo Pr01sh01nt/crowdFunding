@@ -12,8 +12,8 @@ contract CampaignFactory{
         address indexed owner,
         address campaignAddress,
         string imageURI,
-        uint indexed timestamp,
-        string indexed category
+        string category,
+        uint indexed timestamp
     );
 
     function createCampaign(
@@ -23,11 +23,11 @@ contract CampaignFactory{
         string memory category,
         string memory storyURI)public
         {
-            Campaign newCampaign = new Campaign(campaignTitle, requiredCampaignAmount, imgURI, storyURI);
+            Campaign newCampaign = new Campaign(campaignTitle, requiredCampaignAmount, imgURI, storyURI, msg.sender);
 
             deployedCampaign.push(address(newCampaign));
 
-            emit campaignCreated(campaignTitle, requiredCampaignAmount, msg.sender, address(newCampaign), imgURI, block.timestamp, category);
+            emit campaignCreated(campaignTitle, requiredCampaignAmount, msg.sender, address(newCampaign), imgURI, category, block.timestamp);
         }
 }
 
@@ -48,13 +48,14 @@ contract Campaign{
         string memory campaignTitle,
         uint requiredCampaignAmount,
         string memory imgURI,
-        string memory storyURI
+        string memory storyURI,
+        address  _owner
     ) {
         title = campaignTitle;
         requiredAmount = requiredCampaignAmount;
         image = imgURI;
         story = storyURI;
-        owner = payable(msg.sender);
+        owner = payable(_owner);
     }
     
     function donate() public payable{
@@ -68,3 +69,4 @@ contract Campaign{
         emit donated(msg.sender, msg.value, block.timestamp);
     }
 }
+

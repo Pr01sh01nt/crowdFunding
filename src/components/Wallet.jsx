@@ -101,10 +101,11 @@ const Wallet = () => {
       <button onClick={connectWallet} className="pr-2">
         
           Wallet <br/> {  address&&`${address.substring(0,3)}...${address.slice(39)}`}  
+          {/* <br/>
+    {balance?.substring(0,6)} */}
         </button>
     </Tooltip>
     
-    {balance?.substring(0,6)}
     </>
   )
 }

@@ -57,7 +57,7 @@ const MenuButton = () => {
                         <MenuIcon sx={{ typography: 'h3' }} />
                 }
             </button>
-            <div className={`fixed bg-[rgba(0,0,0,0.36)] top-0 min-w-full min-h-screen  ${state} flex-col -z-[0]`}>
+            <div className={`fixed bg-[rgba(0,0,0,0.36)] top-0 min-w-full min-h-screen  ${state} flex-col`}>
                 <div className="flex flex-row sm2:justify-around  sm2:px-[0px] px-[10px] justify-between">
                     <Button
                         varaint="contained"

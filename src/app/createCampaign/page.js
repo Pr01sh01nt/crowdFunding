@@ -56,6 +56,7 @@ export default function Campaign() {
 
                 console.log("saving to blockchain");
                 setUploadLoading(true);
+                
                 const provider = new ethers.BrowserProvider(window.ethereum);
                 const signer = await provider.getSigner();
                 console.log(signer, signer.address);
@@ -66,12 +67,16 @@ export default function Campaign() {
                     signer
                 );
 
+                    
+                console.log(data.get('category'), "category");
                 const tx =  await contract.createCampaign(
                     data.get('title'),
                     parseInt(data.get('amount')),
                     imageRes.IpfsHash,
+                    // "s",
                     data.get('category'),
                     jsonRes.IpfsHash,
+                    // "json"
                 )
 
                 await tx.wait();
@@ -91,7 +96,8 @@ export default function Campaign() {
     }
 
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-slate-400">
+        <>
+        <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-slate-400 mt-40">
 
             <Box
                 component="form"
@@ -141,9 +147,9 @@ export default function Campaign() {
                         <MenuItem value="">
                             <em>None</em>
                         </MenuItem>
-                        <MenuItem value={10}>Education</MenuItem>
-                        <MenuItem value={20}>Health</MenuItem>
-                        <MenuItem value={30}>Awarness</MenuItem>
+                        <MenuItem value="education">Education</MenuItem>
+                        <MenuItem value="health">Health</MenuItem>
+                        <MenuItem value="awareness">Awarness</MenuItem>
                     </Select>
                 </div >
 
@@ -194,5 +200,6 @@ export default function Campaign() {
 
             </Box >
         </main>
+        </>
     );
 }
