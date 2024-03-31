@@ -10,6 +10,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
 import CategoryIcon from '@mui/icons-material/Category';
 import { Suspense } from "react";
+import Link from "next/link";
 
 const MyCampaign = () => {
 
@@ -92,12 +93,9 @@ const MyCampaign = () => {
   }, [searchParams])
 
 
-  const handleClick = (campaignAddress) => {
-    navigate.push(`/${campaignAddress}`);
-  }
-
-  return (
  
+  return (
+  
     <div className="flex justify-around min-w-full flex-wrap">
 
       {searchParams === "dashboard" ?
@@ -120,75 +118,87 @@ const MyCampaign = () => {
       }
       {campaigns?.map((campaign) =>
 
-        <Card
-          sx={{ maxWidth: 345, mb: 10 }}
-          className="shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)] bg-[rgba(176,174,174,0.85)]"
-          onClick={() => { handleClick(campaign.campaignAddress) }}
+        <Link
+          href={{
+            pathname: '/campaignDetail',
+            query: {
+              search: campaign.campaignAddress
+            }
+          }}
           key={campaign.imageURI}
         >
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              height="140"
-              image={`https://ipfs.io/ipfs/${campaign.imageURI}`}
-              alt="image"
-            />
-            <CardContent>
-              <Typography
-                gutterBottom
-                variant="h4"
-                component="div"
-                align="center"
-              >
-                {campaign.title}
-              </Typography>
-              <Typography
-                variant="body2"
-                color="text.primary"
-                className="flex justify-between mb-1"
-              >
-                <span className="font-bold">
-                  Amount Required
-                </span>
-                <span>
-                  {campaign.requiredAmount}ETH
-                </span>
+          <Card
+            sx={{ maxWidth: 345, mb: 10 }}
+            className="shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)] bg-[rgba(176,174,174,0.85)]"
+            // onClick={() => { handleClick(campaign.campaignAddress) }}
+            
+          >
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                height="140"
+                image={`https://ipfs.io/ipfs/${campaign.imageURI}`}
+                alt="image"
+              />
+              <CardContent>
+                <Typography
+                  gutterBottom
+                  variant="h4"
+                  component="div"
+                  align="center"
+                >
+                  {campaign.title}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.primary"
+                  className="flex justify-between mb-1"
+                >
+                  <span className="font-bold">
+                    Amount Required
+                  </span>
+                  <span>
+                    {campaign.requiredAmount}ETH
+                  </span>
 
-              </Typography>
-              <Typography
-                variant="body2"
-                color="text.primary"
-                className="flex justify-between mb-1"
-              >
-                <InsertInvitationIcon />
-                {campaign?.timestamp}
-              </Typography>
-              <Typography
-                variant="body2"
-                color="text.primary"
-                className="flex justify-between mb-1"
-              >
-                <CategoryIcon />
-                {campaign.category}
-              </Typography>
-              <Typography
-                variant="body2"
-                color="text.primary"
-                className="flex justify-between"
-              >
-                Started by:
-                <Tooltip title={`${campaign.owner}`} arrow>
-                  <Button className="bg-[rgb(154,146,146)]" varaint="contained">
-                    {`${campaign.owner.slice(0, 6)}...${campaign.owner.slice(39)}`}
-                  </Button>
-                </Tooltip>
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-        </Card>
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.primary"
+                  className="flex justify-between mb-1"
+                >
+                  <InsertInvitationIcon />
+                  {campaign?.timestamp}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.primary"
+                  className="flex justify-between mb-1"
+                >
+                  <CategoryIcon />
+                  {campaign.category}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.primary"
+                  className="flex justify-between"
+                >
+                  Started by:
+                  <Tooltip title={`${campaign.owner}`} arrow>
+                    <Button className="bg-[rgb(154,146,146)]" varaint="contained">
+                      {`${campaign.owner.slice(0, 6)}...${campaign.owner.slice(39)}`}
+                    </Button>
+                  </Tooltip>
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </Link>
 
       )}
     </div>
+
+
 
   )
 }
