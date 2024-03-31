@@ -6,7 +6,8 @@ import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import styled from "@emotion/styled";
 
 import { ethers } from "ethers";
-import CampaignFactory from '../../../artifacts/contracts/Campaign.sol/CampaignFactory.json'
+// import CampaignFactory from '../../../artifacts/contracts/Campaign.sol/CampaignFactory.json'
+import CampaignFactory from '../../utils/CampaignFactory.json'
 import { uploadFileToIPFS, uploadJSONToIPFS } from "@/ipfs";
 
 import {Merienda} from 'next/font/google';

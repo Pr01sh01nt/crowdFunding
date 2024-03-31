@@ -3,11 +3,12 @@
 import { ethers } from "ethers";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import Campaign from "../../../artifacts/contracts/Campaign.sol/Campaign.json";
+// import Campaign from "../../../artifacts/contracts/Campaign.sol/Campaign.json";
+import Campaign from "../../utils/Campaign.json";
 import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Tooltip, Typography } from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
 
-const campaignDetail = () => {
+const CampaignDetail = () => {
 
   const pathname = usePathname().slice(1);
   const [campaignData, setCampaignData] = useState();
@@ -229,4 +230,4 @@ const campaignDetail = () => {
   )
 }
 
-export default campaignDetail;
+export default CampaignDetail;

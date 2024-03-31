@@ -3,7 +3,8 @@
 import { Button, Card, CardActionArea, CardContent, CardMedia, Tooltip, Typography } from "@mui/material"
 import { ethers } from "ethers";
 import { useEffect, useState } from "react"
-import CampaignFactory from '../../artifacts/contracts/Campaign.sol/CampaignFactory.json'
+// import CampaignFactory from '../../artifacts/contracts/Campaign.sol/CampaignFactory.json'
+import CampaignFactory from '../utils/CampaignFactory.json'
 import { NavigateBefore } from "@mui/icons-material";
 import { useRouter, useSearchParams } from "next/navigation";
 import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
@@ -121,6 +122,7 @@ const MyCampaign = () => {
           sx={{ maxWidth: 345, mb: 10 }}
           className="shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)] bg-[rgba(176,174,174,0.85)]"
           onClick={() => { handleClick(campaign.campaignAddress) }}
+          key={campaign.imageURI}
         >
           <CardActionArea>
             <CardMedia
