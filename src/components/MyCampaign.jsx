@@ -9,6 +9,7 @@ import { NavigateBefore } from "@mui/icons-material";
 import { useRouter, useSearchParams } from "next/navigation";
 import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
 import CategoryIcon from '@mui/icons-material/Category';
+import { Suspense } from "react";
 
 const MyCampaign = () => {
 
@@ -96,6 +97,7 @@ const MyCampaign = () => {
   }
 
   return (
+ 
     <div className="flex justify-around min-w-full flex-wrap">
 
       {searchParams === "dashboard" ?
@@ -187,6 +189,7 @@ const MyCampaign = () => {
 
       )}
     </div>
+
   )
 }
 
