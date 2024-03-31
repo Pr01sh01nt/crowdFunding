@@ -5,21 +5,18 @@ import Wallet from "../Wallet"
 
 const NavBar = () => {
 
-  const handleClick = () => {
-
-  }
 
   return (
     <>
-    <div className="fixed top-0  min-w-full z-10">
+      <div className="fixed top-0  min-w-full z-10 bg-slate-400">
 
-      <nav className="flex items-center justify-between">
-        <span className="pl-2">Logo</span>
-        <MenuButton/>
-        <Wallet />
+        <nav className="flex items-center justify-between">
+          <img src="/assests/logo.png" className="pt-2" alt="logo" />
+          <MenuButton />
+          <Wallet />
 
-      </nav>
-    </div>
+        </nav>
+      </div>
     </>
   )
 }

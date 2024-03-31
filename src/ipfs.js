@@ -26,8 +26,8 @@ export async function uploadFileToIPFS(file)
         }
     );
     const resData = await res.json();
-    console.log("image uploaded to IPFS");
-    console.log(resData, "IpfsHash");
+    // console.log("image uploaded to IPFS");
+    // console.log(resData, "IpfsHash");
 
     return resData;
 
@@ -73,8 +73,8 @@ export async function uploadJSONToIPFS(JSONData)
             }
         );
         const resData = await res.json();
-        console.log("json file uploaded to IPFS");
-        console.log(resData, "IpfsHash");
+        // console.log("json file uploaded to IPFS");
+        // console.log(resData, "IpfsHash");
     
         return resData;
     

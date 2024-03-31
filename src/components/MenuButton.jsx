@@ -5,11 +5,13 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Button } from '@mui/material';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 
 const MenuButton = () => {
     const [isOpened, setIsOpened] = useState(false);
     const navigate = useRouter();
+
 
     let state = "hidden";
     if (isOpened) state = "flex";
@@ -17,26 +19,24 @@ const MenuButton = () => {
 
     const handleClick = () => {
         setIsOpened(true);
-        console.log('helo');
+        // console.log('helo');
     }
 
     const handleClose = (e) => {
         e.stopPropagation();
         // console.log(e.target);
         // console.log(e.target.value );
-        if(e.target.value=="campaigns")
-          {
-              console.log("camp");
+        if (e.target.value == "campaigns") {
+            // console.log("camp");
+            navigate.push("/");
             //shows all campaigns
-          }
-        else if(e.target.value == "dashboard")
-        {
+        }
+        else if (e.target.value == "dashboard") {
             navigate.push("/");
             // show campaigns started by the current account
         }
-        else if(e.target.value == "createCampaign")
-        {
-            console.log("createc");
+        else if (e.target.value == "createCampaign") {
+            // console.log("createc");
             navigate.push("/createCampaign");
         }
         setIsOpened(false);
@@ -61,32 +61,42 @@ const MenuButton = () => {
                 <div className="flex flex-row sm2:justify-around  sm2:px-[0px] px-[10px] justify-between">
                     <Button
                         varaint="contained"
-                        className="bg-[rgb(255,224,224)] mt-2 mb-10"
+                        className="bg-[rgb(255,224,224)] mt-2 mb-10 font-bold  text-[rgba(201,149,119,0.92)]"
                         value="campaigns"
-                        onClick = {handleClose}
+                        onClick={handleClose}
                     >
                         CAMPAIGNS
-                    </Button>   
+                    </Button>
 
                     <Button
-                        varaint="contained"
-                        className="bg-[rgb(255,224,224)] mt-2 mb-10 sm2:mr-0"
+                        // varaint="outlined"
+                        className="bg-[rgb(255,224,224)] mt-2 mb-10 sm2:mr-0 font-bold  text-[rgba(201,149,119,0.92)]"
                         value="createCampaign"
-                        onClick = {handleClose}
+                        onClick={handleClose}
                     >
                         CREATE<br /> CAMPAIGN
                     </Button>
 
                 </div>
                 <div className="flex justify-center">
-                    <Button
-                        varaint="contained"
-                        className="bg-[rgb(255,224,224)]"
-                        value="dashboard"
-                        onClick = {handleClose}
+                    <Link
+                        href={{
+                            pathname: '/',
+                            query: {
+                              search: 'dashboard'
+                            }
+                          }}
                     >
-                        DASHBOARD
-                    </Button>
+                        <Button
+                            varaint="contained"
+                            className="bg-[rgb(255,224,224)] font-bold  text-[rgba(201,149,119,0.92)]"
+                            value="dashboard"
+                            onClick={handleClose}
+                        >
+                            DASHBOARD
+                        </Button>
+
+                    </Link>
                 </div>
 
             </div>
