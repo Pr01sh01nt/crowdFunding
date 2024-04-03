@@ -30,11 +30,14 @@ const MyCampaign = () => {
 
       try {
 
+        console.log('rpc url1');
+
         const provider = new ethers.JsonRpcProvider(
           // "http://localhost:8545"
           process.env.NEXT_PUBLIC_RPC_URL
         );
 
+        console.log('rpc url2');
 
 
         // console.log(await provider.getBlockNumber());
@@ -46,6 +49,7 @@ const MyCampaign = () => {
           CampaignFactory.abi,
           provider
         );
+        console.log('rpc url3');
 
         let filter = null;
         if (searchParams === "dashboard") {
@@ -55,6 +59,7 @@ const MyCampaign = () => {
             throw new Error("Metamask is not installed!!");
           }
 
+          console.log('rpc url4');
           await window.ethereum.request({ method: "eth_requestAccounts" });
 
           const browserProvider = new ethers.BrowserProvider(window.ethereum);
@@ -62,10 +67,12 @@ const MyCampaign = () => {
           // console.log(signer, signer.address);
           filter = signer.address;
         }
+        console.log('rpc url5');
 
         const getCampaign = contract.filters.campaignCreated(null, null, filter, null, null, null, null);
         const data = await contract.queryFilter(getCampaign);
         // console.log(data);
+        console.log('rpc url6');
         const campaignData = data.map((e) => {
           return {
             title: e.args[0],
@@ -79,7 +86,8 @@ const MyCampaign = () => {
         })
 
 
-        console.log(campaignData);
+        console.log('rpc url7');
+        // console.log(campaignData);
         setCampaigns(campaignData);
         console.log("points");
 
@@ -92,9 +100,9 @@ const MyCampaign = () => {
   }, [searchParams])
 
 
- 
+
   return (
-  
+
     <div className="flex justify-around min-w-full flex-wrap">
 
       {searchParams === "dashboard" ?
@@ -129,8 +137,8 @@ const MyCampaign = () => {
           <Card
             sx={{ maxWidth: 345, mb: 10 }}
             className="shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)] bg-[rgba(176,174,174,0.85)]"
-            // onClick={() => { handleClick(campaign.campaignAddress) }}
-            
+          // onClick={() => { handleClick(campaign.campaignAddress) }}
+
           >
             <CardActionArea>
               <CardMedia
