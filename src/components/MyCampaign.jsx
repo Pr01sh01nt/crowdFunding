@@ -9,7 +9,6 @@ import { NavigateBefore } from "@mui/icons-material";
 import { useRouter, useSearchParams } from "next/navigation";
 import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
 import CategoryIcon from '@mui/icons-material/Category';
-import { Suspense } from "react";
 import Link from "next/link";
 
 const MyCampaign = () => {
@@ -25,7 +24,7 @@ const MyCampaign = () => {
   // console.log(searchParams);
 
   useEffect(() => {
-    // console.log("from useEffect")
+    console.log("from useEffect")
 
     const getEvents = async () => {
 
@@ -80,9 +79,9 @@ const MyCampaign = () => {
         })
 
 
-        // console.log(campaignData);
+        console.log(campaignData);
         setCampaigns(campaignData);
-        // console.log("points");
+        console.log("points");
 
       } catch (err) {
         console.error(err);
